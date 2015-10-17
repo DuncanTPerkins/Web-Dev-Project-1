@@ -1,0 +1,96 @@
+﻿@{
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Project:	    Homework 1
+//	File Name:		Index.cshtml
+//	Description:    A web application for Car and Service Record Management
+//	Course:			CSCI 3110-001 - Advanced Web Design and Development
+//	Author:			Duncan Perkins, perkinsdt@goldmail.etsu.edu, Department of Computing, East Tennessee State University
+//	Created:	    Monday, October 13th, 2015
+//	Copyright:		Duncan Perkins, 2015
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+@model IEnumerable<MotorCarFleet.Models.Car>
+
+@{
+    ViewBag.Title = "Cars List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a href="/home/create">Create New Car</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            License
+        </th>
+        <th>
+            Make
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Number of Times Serviced
+        </th>
+        <th>
+            Date of Last Service
+        </th>
+        <th>
+            Date of Next Service
+        </th>
+        <th>
+           Days Until Next Service
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.License
+            </td>
+            <td>
+                @item.Make
+            </td>
+            <td>
+                @item.Model
+            </td>
+            <td>
+                @item.TimesServiced
+            </td>
+            <td>
+                @item.LastService
+            </td>
+            <td>
+                @item.NextService
+            </td>
+            <td>
+                @{
+                    String Days = "N/A";
+                    try
+                    {
+                        string[] date = item.NextService.Split('/');
+                        DateTime Service = new DateTime(Int32.Parse(date[2]), Int32.Parse(date[0]), Int32.Parse(date[1]));
+                        TimeSpan ts = Service - DateTime.Now;
+                        Days = ts.Days.ToString();
+                    }
+                    catch(Exception e) { }
+                }
+                @Days
+            </td>
+            <td>
+                <a href="/home/view/@item.Id">View</a> |
+                <a href="/home/edit/@item.Id">Edit</a> |
+                <a href="/home/delete/@item.Id">Delete</a> |
+                <a href="/record/addrecord/@item.Id">Add Service Record</a>
+            </td>
+        </tr>
+    }
+
+</table>

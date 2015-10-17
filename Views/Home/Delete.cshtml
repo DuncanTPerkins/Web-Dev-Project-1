@@ -1,0 +1,65 @@
+﻿@{
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Project:	    Homework 1
+//	File Name:		Delete.cshtml
+//	Description:    A web application for Car and Service Record Management
+//	Course:			CSCI 3110-001 - Advanced Web Design and Development
+//	Author:			Duncan Perkins, perkinsdt@goldmail.etsu.edu, Department of Computing, East Tennessee State University
+//	Created:	    Monday, October 13th, 2015
+//	Copyright:		Duncan Perkins, 2015
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+@model MotorCarFleet.Models.Car
+
+@{
+    ViewBag.Title = "Delete Car: " + Model.Model + " " + Model.Make;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this Car?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            VIN:
+        </dt>
+
+        <dd>
+            @Model.VIN
+        </dd>
+
+        <dt>
+            License:
+        </dt>
+
+        <dd>
+            @Model.License
+        </dd>
+
+        <dt>
+            Make:
+        </dt>
+
+        <dd>
+            @Model.Make
+        </dd>
+        <dt>
+            Model:
+        </dt>
+
+        <dd>
+            @Model.Model
+        </dd>
+    </dl>
+
+    <form method="post" action="/home/delete">
+        <div class="form-actions no-color">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a href="/home/index" class="btn btn-default">Back to List</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+﻿@{
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Project:	    Homework 1
+//	File Name:		Create.cshtml
+//	Description:    A web application for Car and Service Record Management
+//	Course:			CSCI 3110-001 - Advanced Web Design and Development
+//	Author:			Duncan Perkins, perkinsdt@goldmail.etsu.edu, Department of Computing, East Tennessee State University
+//	Created:	    Monday, October 13th, 2015
+//	Copyright:		Duncan Perkins, 2015
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+@{
+    ViewBag.Title = "Create New Car";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="post" action="/home/create">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label for="VIN" class="control-label col-md-2">VIN:</label>
+            <div class="col-md-10">
+                <input type="text" id="VIN" name="VIN" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="License" class="control-label col-md-2">License:</label>
+            <div class="col-md-10">
+                <input type="text" id="License" name="License" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Make" class="control-label col-md-2">Make:</label>
+            <div class="col-md-10">
+                <input type="text" id="Make" name="Make" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Model" class="control-label col-md-2">Model:</label>
+            <div class="col-md-10">
+                <input type="text" id="Model" name="Model" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a href="/home/index">Back to List</a>
+</div>

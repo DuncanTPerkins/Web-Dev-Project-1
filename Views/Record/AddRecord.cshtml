@@ -1,0 +1,66 @@
+﻿@{
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Project:	    Homework 1
+//	File Name:		AddRecord.cshtml
+//	Description:    A web application for Car and Service Record Management
+//	Course:			CSCI 3110-001 - Advanced Web Design and Development
+//	Author:			Duncan Perkins, perkinsdt@goldmail.etsu.edu, Department of Computing, East Tennessee State University
+//	Created:	    Monday, October 13th, 2015
+//	Copyright:		Duncan Perkins, 2015
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+@model MotorCarFleet.Models.Car
+
+@{
+    ViewBag.Title = "Add Service Record for " + Model.Model + " " + Model.Make;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="post" action="/record/addrecord">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label for="DateServiced" class="control-label col-md-2">Date Serviced (DD/MM/YYYY):</label>
+            <div class="col-md-10">
+                <input type="text" id="DateServiced" name="DateServiced" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="IssuesFound" class="control-label col-md-2">Issues Found:</label>
+            <div class="col-md-10">
+                <input type="text" id="IssuesFound" name="IssuesFound" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="NextService" class="control-label col-md-2">Next Service Date (DD/MM/YYYY):</label>
+            <div class="col-md-10">
+                <input type="text" id="NextService" name="NextService" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="CostOfService" class="control-label col-md-2">Cost Of Service:</label>
+            <div class="col-md-10">
+                <input type="text" id="CostOfService" name="CostOfService" class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="hidden" value="@Model.Id" name="carId" />
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a href="/home/index">Back to List</a>
+</div>

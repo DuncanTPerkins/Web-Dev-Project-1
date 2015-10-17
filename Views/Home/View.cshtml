@@ -1,0 +1,137 @@
+﻿@{
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Project:	    Homework 1
+//	File Name:		View.cshtml
+//	Description:    A web application for Car and Service Record Management
+//	Course:			CSCI 3110-001 - Advanced Web Design and Development
+//	Author:			Duncan Perkins, perkinsdt@goldmail.etsu.edu, Department of Computing, East Tennessee State University
+//	Created:	    Monday, October 13th, 2015
+//	Copyright:		Duncan Perkins, 2015
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+@model MotorCarFleet.Models.Car
+
+@{
+    ViewBag.Title = "Cars List";
+    Double TotalCost = 0;
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            License
+        </th>
+        <th>
+            Make
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Number of Times Serviced
+        </th>
+        <th>
+            Date of Last Service
+        </th>
+        <th>
+            Date of Next Service
+        </th>
+        <th>
+           Days Until Next Service
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>
+            @Model.License
+        </th>
+        <th>
+            @Model.Make
+        </th>
+        <th>
+            @Model.Model
+        </th>
+        <th>
+            @Model.TimesServiced
+        </th>
+        <th>
+            @Model.LastService
+        </th>
+        <th>
+            @Model.NextService
+        </th>
+        <th>
+        @{
+            //logic for computing date differences
+            String Days = "N/A";
+            try
+            {
+                string[] date = Model.NextService.Split('/');
+                DateTime Service = new DateTime(Int32.Parse(date[2]), Int32.Parse(date[0]), Int32.Parse(date[1]));
+                TimeSpan ts = Service - DateTime.Now;
+                Days = ts.Days.ToString();
+            }
+            catch (Exception e) { }
+        }
+        @Days
+        </th>
+    </tr>
+    </table>
+<table class="table">
+    <h2> Service Records:</h2>
+    <tr>
+        <th>
+           Date Serviced
+        </th>
+        <th>
+            Issues Found
+        </th>
+        <th>
+            Date of Last Service
+        </th>
+        <th>
+            Cost of Service
+        </th>
+        <th>
+            Date of Next Service
+        </th>
+    </tr>
+    @foreach (var item in Model.ServiceRecords)
+    {
+        <tr>
+            <td>
+                @item.DateServiced
+            </td>
+            <td>
+                @item.IssuesFound
+            </td>
+            <td>
+                @item.DateServiced
+            </td>
+            <td>
+                @item.CostOfService
+            </td>
+            <td>
+                @item.NextService
+            </td>
+            <td>
+                @{
+                    TotalCost += Double.Parse(item.CostOfService);
+                }
+            </td>
+            <td>
+                <a href="/record/editrecord/@item.Id">Edit</a> |
+                <a href="/record/deleterecord/@item.Id">Delete</a> 
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    Total Cost Of Service: $@TotalCost <br />
+    <a href="/home/index">Back To List</a>
+</p>
